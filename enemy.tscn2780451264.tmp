@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bycpid6jlwuc8"]
+
+[ext_resource type="Script" uid="uid://b3e5qxwdxswiu" path="res://enemy.gd" id="1_7k104"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xaro"]
+size = Vector3(1, 1.0261719, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_yf5fn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k104"]
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=68335495 groups=["enemy"]]
+script = ExtResource("1_7k104")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1365934530]
+shape = SubResource("BoxShape3D_7xaro")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1705495710]
+mesh = SubResource("CapsuleMesh_yf5fn")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1721264260]
+transform = Transform3D(0.565, 0, 0, 0, 0.565, 0, 0, 0, 0.565, 0, 1.0531119, 0)
+shape = SubResource("BoxShape3D_7xaro")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="CollisionShape3D2" unique_id=998350323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.010802746, 0)
+mesh = SubResource("BoxMesh_7k104")
+
+[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D2" unique_id=2100389809]
+transform = Transform3D(1.7699115, 0, 0, 0, 1.7699115, 0, 0, 0, 1.7699115, 0, 0.04245007, 0)
+target_position = Vector3(4.87, 0, 0)
+debug_shape_custom_color = Color(0.6940989, 0, 0.3360988, 1)
+debug_shape_thickness = 5
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=589507299]

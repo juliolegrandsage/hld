@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cjp0dykmyjie3"]
+
+[ext_resource type="Script" uid="uid://bdbugxcmqwee5" path="res://drone.gd" id="1_uvgqj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+radius = 0.75057477
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g4v7s"]
+size = Vector3(2, 2, 2)
+
+[node name="Drone" type="CharacterBody3D" unique_id=2019023632 node_paths=PackedStringArray("camera") groups=["player"]]
+top_level = true
+input_capture_on_drag = true
+script = ExtResource("1_uvgqj")
+sensibility = 0.005
+camera = NodePath("Camera3D")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1768486713]
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=1762212671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00095558167)
+target_position = Vector3(0, 0, -600)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=372488753 groups=["player"]]
+shape = SubResource("SphereShape3D_g4v7s")
+debug_fill = false
+
+[node name="Area3D" type="Area3D" parent="." unique_id=55004650]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1129423919]
+transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
+shape = SubResource("BoxShape3D_g4v7s")
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]

@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://c71vqbfctnqkr"]
+
+[ext_resource type="Script" uid="uid://c0ni80j1x0g6k" path="res://projectile.gd" id="1_a85iw"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_a85iw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_yf5fn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a85iw"]
+albedo_color = Color(0.8398329, 0.74711597, 0, 1)
+albedo_texture_msdf = true
+emission_enabled = true
+emission = Color(0.5326728, 0.042206794, 0.11712711, 1)
+emission_energy_multiplier = 11.55
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=176057337]
+script = ExtResource("1_a85iw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=633957326]
+transform = Transform3D(1, 0, 0, 0, 0.20972878, 0, 0, 0, 0.17415017, 0, 0, 0)
+shape = SubResource("BoxShape3D_a85iw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1393474791]
+mesh = SubResource("BoxMesh_yf5fn")
+surface_material_override/0 = SubResource("StandardMaterial3D_a85iw")
+
+[node name="Timer" type="Timer" parent="." unique_id=1075572995]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
